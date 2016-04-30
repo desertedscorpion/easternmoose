@@ -2,7 +2,9 @@
 
 time docker build -t ninthgrimmercury/easternmoose . &&
     time docker build -t freakygamma/easternmoose test &&
+    echo BEFORE &&
     docker run --interactive --tty freakygamma/easternmoose systemctl is-enabled dnf-makecache.timer &&
+    echo AFTER &&
     X=$(docker run --interactive --tty freakygamma/easternmoose systemctl is-enabled dnf-makecache.timer) &&
     echo X=${X} &&
     [[ "disabled" == $(docker run --interactive --tty freakygamma/easternmoose systemctl is-enabled dnf-makecache.timer) ]] &&
