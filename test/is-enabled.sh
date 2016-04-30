@@ -1,4 +1,3 @@
 #!/bin/bash
 
-systemctl is-enabled "${@}"
-exit 0
+systemctl is-enabled "${@}" || exit 0
