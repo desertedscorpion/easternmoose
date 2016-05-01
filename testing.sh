@@ -7,7 +7,7 @@ function is-enabled(){
 
 time docker build -t ninthgrimmercury/easternmoose . &&
     time docker build -t freakygamma/easternmoose test &&
-    is-enabled dnf-makecache.timer &&
+    echo "\"$(is-enabled dnf-makecache.timer)\"" &&
     if [[ "disabled" == "$(is-enabled dnf-makecache.timer)" ]]
     then
 	echo dnf-makecache.timer is disabled. &&
