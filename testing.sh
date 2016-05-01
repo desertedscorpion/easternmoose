@@ -2,9 +2,7 @@
 
 time docker build -t ninthgrimmercury/easternmoose . &&
     time docker build -t freakygamma/easternmoose test &&
-    DNFUPDATEFILE=$(mktemp) &&
-    docker run --interactive --tty freakygamma/easternmoose dnf update --assumeyes > ${DNFUPDATEFILE} 2>&1 &&
-    echo ${DNFUPDATEFILE} &&
+    docker run --interactive --tty freakygamma/easternmoose dnf update --assumeyes | grep "^Last metadata expiration check: \d*:\d*:\d* ago on ... ...  \d* \d*:\d*:\d* \d*\$" &&
     if [[ "disabled" == "$(docker run --interactive freakygamma/easternmoose systemctl is-enabled dnf-makecache.timer)" ]]
     then
 	echo dnf-makecache.timer is disabled. &&
