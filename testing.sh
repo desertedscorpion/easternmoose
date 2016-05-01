@@ -10,6 +10,6 @@ time docker build -t ninthgrimmercury/easternmoose . &&
 	echo dnf-makecache.timer is not disabled. &&
 	    exit 64
     fi &&
-    docker rmi ninthgrimmercury/easternmoose &&
-    docker rmi freakygamma/easternmoose &&
+    docker rmi --force ninthgrimmercury/easternmoose &&
+    docker rmi --force freakygamma/easternmoose &&
     true
