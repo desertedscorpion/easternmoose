@@ -1,18 +1,19 @@
 #!/bin/bash
 
 function is-enabled(){
-    docker run --interactive --tty freakygamma/easternmoose systemctl is-enabled dnf-makecache.timer;
+    ( docker run --interactive --tty freakygamma/easternmoose systemctl is-enabled dnf-makecache.timer || true) &&
     return 0
 }
 
 time docker build -t ninthgrimmercury/easternmoose . &&
     time docker build -t freakygamma/easternmoose test &&
+    is-enabled 
     if [[ "disabled" == "$(is-enabled dnf-makecache.timer)" ]]
     then
-	echo -e "dnf-makecache.timer is disabled - \"${BAD}\"." &&
+	echo dnf-makecache.timer is disabled. &&
 	    true
     else
-	echo -e "dnf-makecache.timer is not disabled - \"${BAD}\"." &&
+	echo dnf-makecache.timer is not disabled. &&
 	    exit 64
     fi &&
     docker rmi ninthgrimmercury/easternmoose &&
