@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function is-enabled(){
-    ( docker run --interactive --tty freakygamma/easternmoose systemctl is-enabled "${@}" || true) &&
+    ( docker run --interactive freakygamma/easternmoose systemctl is-enabled "${@}" || true) &&
     return 0
 }
 
