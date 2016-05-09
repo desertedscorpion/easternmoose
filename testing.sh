@@ -2,7 +2,7 @@
 
 time docker build -t ninthgrimmercury/easternmoose . &&
     time docker build -t freakygamma/easternmoose test &&
-    if docker run --interactive --tty freakygamma/easternmoose dnf update --assumeyes | grep "^Last metadata expiration check: 0:0"
+    if docker run --interactive freakygamma/easternmoose dnf update --assumeyes | grep "^Last metadata expiration check: 0:0"
     then
 	echo dnf was updated within the last ten minutes &&
 	    true
